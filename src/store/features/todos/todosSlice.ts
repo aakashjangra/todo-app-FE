@@ -7,19 +7,33 @@ export const todosSlice = createSlice({
   },
   reducers: {
     add: (state, action) => {
-      state.todos.push({'id': action.payload.id, 'title': action.payload.title})
-    }, 
-    remove: (state, action: {payload: {id: string}}) => {
-      // const updatedArr = [...state.todos]
-      const removeMatching = (value, index, arr) => {
-        if(value.id === action.payload.id) {
-          arr.splice(index, 1);
-          return true;
-        }
-        return false;
-      }
 
-      state.todos.filter(removeMatching);
+      state.todos.push(
+        {
+          'id': action.payload.id, 
+          'title': action.payload.title, 
+          'status': 'active'
+        }
+      )
+
+    }, 
+    markCompleted: (state, action: {payload: {id: string}}) => {
+
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload.id
+          ? { ...todo, status: 'completed' }
+          : todo 
+      )
+
+    },
+    remove: (state, action: {payload: {id: string}}) => {
+
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+
+    },
+    clearCompleted: (state) => {
+
+      state.todos = state.todos.filter((todo) => todo.status === 'active')
 
     }
   }
@@ -27,6 +41,6 @@ export const todosSlice = createSlice({
 
 
 
-export const {add, remove} = todosSlice.actions;
+export const { add, remove, markCompleted, clearCompleted } = todosSlice.actions;
 
 export default todosSlice.reducer
