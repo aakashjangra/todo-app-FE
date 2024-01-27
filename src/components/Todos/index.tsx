@@ -4,8 +4,8 @@ import './index.css';
 import React, { useEffect, useState } from 'react';
 import SunSvg from '../../media/images/icon-sun.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCompleted } from '../../store/features/todos/todosSlice';
-// import { removeCompleted } from '../../store/features/todos/todosSlice';
+import { clearCompleted, reorderTodos } from '../../store/features/todos/todosSlice';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 const Todos = () => {
   // const Todos = [
@@ -28,6 +28,15 @@ const Todos = () => {
     dispatch(clearCompleted());
   };
 
+  const handleDragEnd = (result) => {
+    if (!result.destination) return; // dropped outside the list
+
+    const startIndex = result.source.index;
+    const endIndex = result.destination.index;
+
+    dispatch(reorderTodos({startIndex, endIndex}));
+  };
+
   useEffect(() => {
     setTodoCount(
       todoFilter === 'all'
@@ -45,14 +54,37 @@ const Todos = () => {
       </header>
       <TodoInput classN="mb-5" />
       <div className="todos max-h-[52vh] overflow-auto">
-        {todos && todos.length > 0 && (
-          todos.map((todo) => {
-            if(todoFilter === 'all' || todoFilter === todo.status){
-              console.log('todo is: ', todo);
-              return <Todo key={todo.id} content={todo} />;
-            }
-          })
-        )} 
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="todos">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {todos &&
+                  todos.length > 0 &&
+                  todos.map((todo, index) => (
+                    <Draggable
+                      key={todo.id}
+                      draggableId={todo.id}
+                      index={index}
+                    >
+                      {(provided) =>
+                        (todoFilter === 'all' ||
+                          todoFilter === todo.status) && (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <Todo key={todo.id} content={todo} />
+                          </div>
+                        )
+                      }
+                    </Draggable>
+                  ))}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+
         {todoCount == 0 && (
           <div className="bg-v-dark-desat-blue border-b border-v-dark-grayish-blue w-full text-center p-4 ">
             Empty
@@ -61,9 +93,7 @@ const Todos = () => {
       </div>
 
       <section className="bg-v-dark-desat-blue flex justify-between items-center p-4 text-xs">
-        <p className="text-gray">
-          { todoCount } items left
-        </p>
+        <p className="text-gray">{todoCount} items left</p>
         <div className="flex gap-3 justify-self-center">
           <button
             className={`${todoFilter === 'all' ? 'selectedFilter' : ''}`}

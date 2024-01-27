@@ -28,7 +28,7 @@ const Todo = ({content}) => {
             console.log('status is:', content.status)
         }}
       />
-      <p className='w-full px-4'>
+      <p className={`w-full px-4 ${content.status === 'completed'? 'line-through': ''} `}>
         {content.title}
       </p>
       <img src={IconCross} alt="remove item" 

@@ -35,12 +35,20 @@ export const todosSlice = createSlice({
 
       state.todos = state.todos.filter((todo) => todo.status === 'active')
 
-    }
+    },
+    reorderTodos: (state, action) => {
+      const { startIndex, endIndex } = action.payload;
+      const reorderedTodos = Array.from(state.todos);
+      const [removed] = reorderedTodos.splice(startIndex, 1);
+      reorderedTodos.splice(endIndex, 0, removed);
+      state.todos = reorderedTodos;
+    } 
   }
 }) 
 
 
 
-export const { add, remove, markCompleted, clearCompleted } = todosSlice.actions;
+export const { add, remove, markCompleted, clearCompleted, reorderTodos } =
+  todosSlice.actions;
 
 export default todosSlice.reducer
