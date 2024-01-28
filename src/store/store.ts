@@ -1,10 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { EnhancedStore, ReducerType, configureStore } from "@reduxjs/toolkit";
 import todosReducer from "./features/todos/todosSlice";
 import darkModeReducer from './features/darkMode/darkModeSlice';
 
-export default configureStore({
+const store: EnhancedStore = configureStore({
   reducer: {
     todos: todosReducer,
     darkMode: darkModeReducer,
   },
 });
+
+export default store

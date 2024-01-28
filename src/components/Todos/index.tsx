@@ -10,17 +10,9 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { toggle } from '../../store/features/darkMode/darkModeSlice';
 
 const Todos = () => {
-  // const Todos = [
-  //   {
-  // id
-  //     "title": "get groceries"
-  // completed
-  //   }, {
-  //     "title": "complete frontend"
-  //   }
-  // ]
-  const todos = useSelector((state) => state.todos.todos);
-  const darkTheme = useSelector((state) => state.darkMode.dark);
+
+  const todos = useSelector((state: {todos}) => state.todos.todos);
+  const darkTheme = useSelector((state: {darkMode}) => state.darkMode.dark);
 
   const dispatch = useDispatch();
   const [todoFilter, setTodoFilter] = useState('all');
