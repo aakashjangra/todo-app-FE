@@ -12,7 +12,7 @@ export const todosSlice = createSlice({
         {
           'id': action.payload.id, 
           'title': action.payload.title, 
-          'status': 'active'
+          'status': action.payload.status
         }
       )
 
