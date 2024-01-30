@@ -34,9 +34,7 @@ const TodoInput = ({ classN }) => {
       </div>
       <input
         onKeyDown={async (e) => {
-          if (e.code === 'Enter' && content) {
-            console.log('enter pressed');
-            console.log('create todo -> ', content);
+          if (e.key === 'Enter' && content) {
             const id = await uuidv4();
             addTodo({
               id,
