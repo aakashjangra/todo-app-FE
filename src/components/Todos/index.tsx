@@ -59,7 +59,7 @@ const Todos = () => {
       </header>
       <TodoInput classN="mb-5" />
       <div className="shadow-lg">
-        <div className="todos max-h-[52vh] w-full overflow-auto rounded-sm ">
+        <div className="todos max-h-[52vh] w-full overflow-auto rounded-sm scroll-smooth ">
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="todos">
               {(provided) => (
