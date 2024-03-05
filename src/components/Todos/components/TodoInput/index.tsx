@@ -13,7 +13,9 @@ const TodoInput = ({ classN }) => {
 
   const dispatch = useDispatch();
 
-  const addTodo = (content: { id: string, title: string, status: string }) => {
+  const addTodo = async (title: string, status: string ) => {
+    const id = await uuidv4();
+    const content = {id: id, title: title, status: status};
     dispatch(add(content))
     setContent('');
     setCompleted(false);
@@ -33,14 +35,12 @@ const TodoInput = ({ classN }) => {
         {completed && <img className="" src={CheckIcon} alt="" />}
       </div>
       <input
-        onKeyDown={async (e) => {
+        onKeyDown={(e) => {
           if (e.key === 'Enter' && content) {
-            const id = await uuidv4();
-            addTodo({
-              id,
-              title: content,
-              status: completed ? 'completed' : 'active',
-            });
+            addTodo(
+              content,
+              completed ? 'completed' : 'active',
+            );
           }
         }}
         className="appearance-none h-full w-full text-blue bg-white dark:bg-v-dark-desat-blue focus-visible:outline-none "
@@ -52,6 +52,11 @@ const TodoInput = ({ classN }) => {
           setContent(e.target.value);
         }}
       />
+      <button className='w-10 h-10 bg-v-dark-desat-blue text-white dark:text-black dark:bg-light-grayish-blue rounded-full'
+      onClick={() => {
+        addTodo(content, completed ? 'completed' : 'active');
+      }}
+      >+</button>
     </div>
   );
 }

@@ -15,3 +15,23 @@ body{
   font-size: 18px;
 }
 
+.custom-scrollbar-1{
+    scroll-behavior: smoth;
+
+    --thumb-color: rgba(134,107,255,1);
+    --track-color: rgba(209,107,255,1);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumb-color) var(--track-color);
+    
+}
+.custom-scrollbar-1::-webkit-scrollbar{
+  width: 6px;
+}
+.custom-scrollbar-1::-webkit-scrollbar-track {
+  background: var(--track-color);
+}
+.custom-scrollbar-1::-webkit-scrollbar-thumb {
+  background-color: var(--track-color);
+  border-radius: 6px;
+}

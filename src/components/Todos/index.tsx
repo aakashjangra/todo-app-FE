@@ -46,7 +46,7 @@ const Todos = () => {
   
 
   return (
-    <div className="absolute top-[9vh] w-[90vw] sm:w-[32.5vw] ">
+      <div className="relative z-30 top-[9vh] h-full w-[90vw] sm:w-[60vw] lg:w-[35vw]">
       <header className="flex justify-between tracking-[0.9rem] mb-7">
         <h1 className="text-3xl font-[700] text-white cursor-none">TODO</h1>
         <div className="cursor-pointer" onClick={toggleTheme}>
@@ -130,8 +130,8 @@ const Todos = () => {
         </section>
       </div>
       <footer
-        className="relative text-xs text-v-dark-grayish-blue bottom-0 w-full text-center font-normal 
-        mt-10"
+        className="relative text-xs sm:text-lg text-v-dark-grayish-blue bottom-0 w-full text-center font-normal 
+        my-10"
       >
         Drag and drop to reorder list
       </footer>

@@ -1,21 +1,28 @@
-import { useState } from 'react';
 import './App.css';
 import Todos from './components/Todos';
-import darkDesktopBg from './media/images/bg-desktop-dark.jpg';
-import lightDesktopBg from './media/images/bg-desktop-light.jpg';
 
 function App() {
-  console.log(darkDesktopBg)
   return (
-    <main
-      className={`main h-screen w-screen dark:text-white dark:bg-v-dark-blue    
-        flex items-center justify-center 
-        bg-[url('./media/images/bg-desktop-light.jpg')]
-        dark:bg-[url('./media/images/bg-desktop-dark.jpg')]
-      `}
+    <div
+      className={`relative z-10 h-screen max-w-screen
+     `}
     >
-      <Todos />
-    </main>
+      <div
+        className={`fixed h-[35vh] w-full top-0 bg-[url('./media/images/bg-desktop-light.jpg')]
+        dark:bg-[url('./media/images/bg-desktop-dark.jpg')]`}
+      ></div>
+      <div
+        className={`fixed h-full w-full top-[35vh] bg-[url("/glamorous.svg")] dark:bg-[url("/glamorous-light.svg")] dark:bg-v-dark-blue`}
+      ></div>
+      <main
+        className={`dark:text-white     
+        flex items-center justify-center 
+         h-full w-full
+        `}
+      >
+        <Todos />
+      </main>
+    </div>
   );
 }
 
