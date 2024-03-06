@@ -54,7 +54,9 @@ const TodoInput = ({ classN }) => {
       />
       <button className='w-10 h-10 bg-v-dark-desat-blue text-white dark:text-black dark:bg-light-grayish-blue rounded-full'
       onClick={() => {
-        addTodo(content, completed ? 'completed' : 'active');
+        if(content){
+          addTodo(content, completed ? 'completed' : 'active');
+        }
       }}
       >+</button>
     </div>
