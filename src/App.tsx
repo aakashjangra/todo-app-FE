@@ -9,10 +9,12 @@ function App() {
     >
       <div
         className={`fixed h-[35vh] w-full top-0 bg-[url('./media/images/bg-desktop-light.jpg')]
-        dark:bg-[url('./media/images/bg-desktop-dark.jpg')]`}
+        dark:bg-[url('./media/images/bg-desktop-dark.jpg')]
+        bg-cover
+        `}
       ></div>
       <div
-        className={`fixed h-full w-full top-[35vh] bg-[url("/glamorous.svg")] dark:bg-[url("/glamorous-light.svg")] dark:bg-v-dark-blue`}
+        className={`fixed h-full w-full top-[35vh] bg-gradient-to-r from-[#719ff7] to-[#b562ee] dark:from-[#751b75] dark:to-[#2c169c]  dark:bg-v-dark-blue bg-contain`}
       ></div>
       <main
         className={`dark:text-white     

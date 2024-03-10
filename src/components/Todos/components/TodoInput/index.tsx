@@ -24,8 +24,11 @@ const TodoInput = ({ classN }) => {
       className={`${classN} flex items-center bg-white dark:bg-v-dark-desat-blue w-full p-4 gap-4 rounded-sm`}
     >
       <div
-        className={`border min-h-5 min-w-5 flex items-center justify-center rounded-[50%] border-v-dark-desat-blue dark:border-light-grayish-blue cursor-pointer ${completed ? 'bg-blue-300 border-none' : 'bg-transparent'}
-         hover:border-blue-300`}
+        className={`
+        border min-h-5 min-w-5 flex items-center justify-center rounded-[50%] border-v-dark-desat-blue dark:border-light-grayish-blue cursor-pointer ${completed ? 'bg-blue-300 border-none' : 'bg-transparent'}
+         hover:border-blue-300
+         dark:hover:border-h-light-grayish-blue
+        `}
         onClick={() => {
           setCompleted(!completed);
         }}
@@ -48,7 +51,7 @@ const TodoInput = ({ classN }) => {
         }}
       />
       <button
-        className="p-1 bg-v-dark-desat-blue text-white dark:text-black dark:bg-light-grayish-blue rounded-full "
+        className="p-1 bg-v-dark-desat-blue text-white dark:text-black dark:bg-light-grayish-blue rounded-full hover:scale-110"
         onClick={() => {
           if (content) {
             addTodo(content, completed ? 'completed' : 'active');

@@ -77,6 +77,7 @@ const Todos = () => {
                           (todoFilter === 'all' ||
                             todoFilter === todo.status) && (
                             <div
+                              className="w-full"
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
@@ -131,8 +132,8 @@ const Todos = () => {
         </section>
       </div>
       <footer
-        className="relative text-xs sm:text-lg text-v-dark-grayish-blue bottom-0 w-full text-center font-normal 
-        my-10"
+        className="relative text-xs sm:text-lg text-v-dark-grayish-blue bottom-0 w-full text-center py-2 font-normal 
+        my-10 bg-black/10"
       >
         Drag and drop to reorder list
       </footer>
