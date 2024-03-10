@@ -132,8 +132,8 @@ const Todos = () => {
         </section>
       </div>
       <footer
-        className="relative text-xs sm:text-lg text-v-dark-grayish-blue bottom-0 w-full text-center py-2 font-normal 
-        my-10 bg-black/10"
+        className="relative text-xs sm:text-lg bottom-0 w-full text-center py-2 font-normal 
+        my-10 rounded-sm text-h-light-grayish-blue"
       >
         Drag and drop to reorder list
       </footer>
