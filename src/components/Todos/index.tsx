@@ -1,18 +1,20 @@
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import './index.css';
-import React, { useEffect, useState } from 'react';
-import SunSvg from '../../media/images/icon-sun.svg';
-import MoonSvg from '../../media/images/icon-moon.svg';
+import { useEffect, useState } from 'react';
+import SunSvg from '/icon-sun.svg';
+import MoonSvg from '/icon-moon.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCompleted, reorderTodos } from '../../store/features/todos/todosSlice';
+import {
+  clearCompleted,
+  reorderTodos,
+} from '../../store/features/todos/todosSlice';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { toggle } from '../../store/features/darkMode/darkModeSlice';
 
 const Todos = () => {
-
-  const todos = useSelector((state: {todos}) => state.todos.todos);
-  const darkTheme = useSelector((state: {darkMode}) => state.darkMode.dark);
+  const todos = useSelector((state: { todos }) => state.todos.todos);
+  const darkTheme = useSelector((state: { darkMode }) => state.darkMode.dark);
 
   const dispatch = useDispatch();
   const [todoFilter, setTodoFilter] = useState('all');
@@ -21,7 +23,7 @@ const Todos = () => {
 
   const toggleTheme = () => {
     dispatch(toggle());
-  }
+  };
 
   const clearCompletedTasks = () => {
     dispatch(clearCompleted());
@@ -33,20 +35,19 @@ const Todos = () => {
     const startIndex = result.source.index;
     const endIndex = result.destination.index;
 
-    dispatch(reorderTodos({startIndex, endIndex}));
+    dispatch(reorderTodos({ startIndex, endIndex }));
   };
 
   useEffect(() => {
     setTodoCount(
       todoFilter === 'all'
-      ? todos.length
-      : todos.filter((todo) => todo.status === todoFilter).length
-    )
-  }, [todoFilter, todos])
-  
+        ? todos.length
+        : todos.filter((todo) => todo.status === todoFilter).length,
+    );
+  }, [todoFilter, todos]);
 
   return (
-      <div className="relative z-30 top-[9vh] h-full w-[90vw] sm:w-[60vw] lg:w-[35vw]">
+    <div className="relative z-30 top-[9vh] h-full w-[90vw] sm:w-[60vw] lg:w-[35vw]">
       <header className="flex justify-between tracking-[0.9rem] mb-7">
         <h1 className="text-3xl font-[700] text-white cursor-none">TODO</h1>
         <div className="cursor-pointer" onClick={toggleTheme}>
@@ -98,7 +99,7 @@ const Todos = () => {
           )}
         </div>
 
-        <section className="bg-white dark:bg-v-dark-desat-blue border-t border-v-dark-grayish-blue flex justify-between items-center p-4 text-xs">
+        <section className="bg-white dark:bg-v-dark-desat-blue border-t border-v-dark-grayish-blue flex justify-between items-center p-4 text-xs md:text-[16px] ">
           <p className="text-gray">{todoCount} items left</p>
           <div className="select-filer flex gap-3 justify-self-center">
             <button
